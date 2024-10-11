@@ -1,0 +1,7 @@
+//Given an integer n representing number of vertices. Find out how many undirected graphs (not necessarily connected) can be constructed out of a given n number of vertices.
+
+long long count(int n) {
+        return (long long)pow(2,n*(n-1)/2);    //2 to power n*(n-1)/2
+        
+        // your code here
+    }
