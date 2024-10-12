@@ -1,0 +1,30 @@
+class Solution {
+private:
+    void dfs(int node ,vector<int>&ans,vector<vector<int>> &adj ,int vis[]){
+        vis[node]=1;
+        ans.push_back(node);
+        
+        for(auto it : adj[node]){
+            if(!vis[it]){
+                dfs(it,ans,adj,vis);
+                
+            }
+        }
+        return;
+        
+    }
+    
+    
+  public:
+  //nction to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(vector<vector<int>>& adj) {
+        vector<int>ans;
+        int n = adj.size();
+        int vis[n]={0};
+        int start = 0;
+        dfs(start,ans,adj,vis);
+        return ans;
+        // Code here
+    }
+    
+};
