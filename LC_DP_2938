@@ -1,0 +1,18 @@
+class Solution {
+public:
+    long long minimumSteps(string s) {
+        long long whitepos=0;
+        long long swap=0;
+        for(int currpos=0;currpos<s.length();currpos++){
+            if(s[currpos]== '0'){
+                swap = swap + currpos-whitepos;
+                whitepos++;
+            }
+        }
+        
+        
+        
+        return swap;
+        
+    }
+};
