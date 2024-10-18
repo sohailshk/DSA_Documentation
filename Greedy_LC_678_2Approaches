@@ -1,0 +1,63 @@
+//BRUTE FORCE
+//TIME COMPLEXITY- 3^N
+//SPACE COMPLEXITY-O(N)
+class Solution {
+    public:
+    bool check(string s,int ind,int cnt){
+        if(cnt<0){
+            return false;
+        }
+        if(ind==s.length()){
+                return (cnt==0);
+            }
+        if(s[ind]=='('){
+            return check(s,ind+1,cnt+1);
+    }
+        if(s[ind]==')'){
+            return check(s,ind+1,cnt-1);
+        }
+        return check(s,ind+1,cnt+1) || check(s,ind+1,cnt-1) || check(s,ind+1,cnt);
+    }
+       
+
+public:
+    bool checkValidString(string s) {
+        return check(s,0,0);
+    }
+};
+
+/OPTIMAL SOLUTION
+//TIME COMPLEXITY-O(N)
+//SPACE COMPLEXITY - O(1)
+//USING 2 POINTERS
+
+class Solution {
+public:
+    bool checkValidString(string s) {
+        int opencnt=0;
+        int closecnt=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='(' || s[i]=='*'){
+                opencnt++;
+            }
+            else{
+                opencnt--;
+            }
+            
+            if(s[s.length()-1-i]==')' || s[s.length()-1-i]=='*'){
+                closecnt++;
+            }
+            else{
+                closecnt--;
+            }
+            if(opencnt<0 || closecnt<0){
+                return false;
+            }
+            
+        }
+        return true;
+    }
+};
+
+
+
