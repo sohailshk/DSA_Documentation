@@ -1,0 +1,48 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        if(a.size()<b.size()){swap(a,b);}
+        while(a.size()>b.size()){b= '0'+ b;}
+        string ans="";
+        int n=a.size();
+        int m=b.size();
+        char carry = '0';
+        for(int i=n-1;i>=0;i--){
+            char bit;
+            if(a[i]=='1' && b[i]=='1'){
+                if(carry=='1'){
+                    bit = '1';
+                    
+                }
+                else{
+                    bit='0';
+                    carry='1';
+                }
+            }
+            else if(a[i]=='0' && b[i]== '0'){
+                if(carry=='0'){
+                    bit = '0';
+                }
+                else{
+                    bit='1';
+                    carry='0';
+                }
+            }
+                else if(a[i]!=b[i]){
+                    if(carry == '0'){
+                        bit = '1';
+                    }
+                    else{
+                        bit = '0';
+                        carry='1';
+                    }
+                }
+                ans = bit + ans;
+            }
+
+
+        if(carry=='1') ans = '1' + ans;
+        return ans;
+        
+    }
+};
