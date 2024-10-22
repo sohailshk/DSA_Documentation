@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        // the term that will come once will only give a value others XOR will become 0 bcoz even ka xor is 0
+        int n = nums.size();
+        int ans=0;
+        for(int i : nums){
+            ans = ans ^ i;
+        }
+        return ans;
+
+        
+    }
+};
