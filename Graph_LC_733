@@ -1,0 +1,28 @@
+class Solution {
+private:
+    void  dfs(int row,int col,vector<vector<int>>&copy,vector<vector<int>>&image,int n,int m, int inicolor,int color, int          delrow[],int delcol[]){
+        copy[row][col] = color;
+
+        for(int i=0;i<4;i++){
+            int neighborrow= row+delrow[i];
+            int neighborcol= col+delcol[i];
+            if(neighborrow>=0 && neighborrow<n && neighborcol>=0 && neighborcol<m && copy[neighborrow][neighborcol]!=color && copy[neighborrow][neighborcol]==inicolor){
+                dfs(neighborrow,neighborcol,copy,image,n,m,inicolor,color,delrow,delcol);
+            }
+        }
+
+    }
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int inicolor=image[sr][sc];
+        vector<vector<int>> copy= image;
+        int delrow[]={-1,0,+1,0};
+        int delcol[]={0,1,0,-1};
+        int n= image.size();
+        int m=image[0].size();
+        dfs(sr,sc,copy,image,n,m,inicolor,color,delrow,delcol);
+        return copy;
+
+        
+    }
+};
