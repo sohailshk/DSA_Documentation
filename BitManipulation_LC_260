@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int n =nums.size();
+        vector<int> finalans;
+        long long  ans=0; // long loong because -2^31-1 waala term will overflow
+        for(int i=0;i<n;i++){
+            ans=ans^nums[i];
+        }
+        int rightmost = ((ans)&(ans-1))^ans;
+        int b1=0;
+        int b2=0;
+        for(int i=0;i<n;i++){
+            if(rightmost & nums[i]){
+                b1=b1^nums[i];
+            }
+            else{
+                b2=b2^nums[i];
+            }
+        }
+        finalans.push_back(b1);
+        finalans.push_back(b2);
+        return finalans;
+    }
+};
